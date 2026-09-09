@@ -69,10 +69,9 @@ func parseNM(output string) symtab {
 	return syms
 }
 
-// assembleLinkARM assembles an embedded asm/<srcName> file with
-// "-mcpu=cortex-a7" plus the given --defsym values, links it at loadVA
-// (entry = loadVA), and extracts the raw binary + a symbol table via an
-// as/ld/objcopy/nm chain.
+// assembleLinkARM assembles an embedded asm/<srcName> file with the given
+// --defsym values, links it at loadVA (entry = loadVA), and extracts the raw
+// binary + a symbol table via an as/ld/objcopy/nm chain.
 func assembleLinkARM(workDir, srcName string, loadVA uint32, syms defsyms) ([]byte, symtab, error) {
 	srcData, err := asmFS.ReadFile("asm/" + srcName)
 	if err != nil {
@@ -88,7 +87,7 @@ func assembleLinkARM(workDir, srcName string, loadVA uint32, syms defsyms) ([]by
 	elfFile := base + ".elf"
 	binFile := base + ".bin"
 
-	asArgs := []string{"-mcpu=cortex-a7"}
+	var asArgs []string
 	for _, d := range syms {
 		asArgs = append(asArgs, "--defsym", d)
 	}
