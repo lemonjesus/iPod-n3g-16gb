@@ -6,7 +6,7 @@ This tool mods an iPod nano 3rd Generation to run on a 16 GB NAND flash chip. Th
 
 A nano 3G running this firmware on the 16 GB chip boots RetailOS, reports 15 GB in Settings → About, and keeps its filesystem across a reboot. Long-term FTL health (sustained writes, wear levelling, power loss mid-write) is not yet proven, but theoretically very likely.
 
-The original NAND chip has to be replaced with a 16 GB (128Gb) part. The patchset targets one specific chip - a Micron SLC with NAND ID `0xA701882C` and 8192-byte pages (encoded in `pkg/nand16gb/chip.go`) - and has no fallbacks. Other chips are not supported but with a tiny bit of elbow grease, it might be possible to adapt the patcher. MLC chips of this size are unlikely to ever work because the ECC engine might not be able to support the higher error correction requirements. If you figure out how to make it work with other chips, contributions are welcome.
+The original NAND chip has to be replaced with a 16 GB (128Gb) part. The patchset targets one specific chip - a Micron SLC with NAND ID `0xA701882C` and 8192-byte pages (encoded in `pkg/nand16gb/chip.go`) - and has no fallbacks. The code is written specifically for the Micron `MT29F128G08AJAAAWP` - other chips are not supported but with a tiny bit of elbow grease, it might be possible to adapt the patcher. MLC chips of this size are unlikely to ever work because the ECC engine might not be able to support the higher error correction requirements. If you figure out how to make it work with other chips, contributions are welcome.
 
 # Building
 
